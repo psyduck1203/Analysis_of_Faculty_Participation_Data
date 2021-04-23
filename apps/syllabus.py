@@ -58,7 +58,3 @@ def app():
         df2=df2.append(pd.DataFrame(t1))
     st.write('**Graph of Year-Wise Count of Teacher attending Syllabus**')
     st.bar_chart(df2)
-    
-#    st.bar_chart(df1)
-
-#    st.bar_chart(df2)

@@ -67,7 +67,7 @@ def app():
         st.bar_chart(u1)
 
     df1 = pd.read_excel(df, sheet_name=1)
-    
+
     df2 = pd.concat(pd.read_excel(df, sheet_name=None, skiprows=1))
     
     st.write('**Bar Graph of All 3 Years Count of Teacher attending Workshop based on Criteria**')
@@ -86,27 +86,3 @@ def app():
     u1 = df1['Source of Funding'].value_counts()
     st.bar_chart(u1)
 
-
-
-
-
-
-
-
-
-
-    # df_total = pd.DataFrame()
-    # for file in files:                         # loop through Excel files
-    #     if file.endswith('.xlsx'):
-    #         excel_file = pd.ExcelFile(file)
-    #         sheets = excel_file.sheet_names
-    #         for sheet in sheets:               # loop through sheets inside an Excel file
-    #             f = excel_file.parse(sheet_name = sheet)
-    #             df_total = df_total.append(f)
-    # df_total.to_excel('combined_file.xlsx')
-
-
-
-
-    # u1 = final['Criteria :=> Workshop / STTP / Training Program / FDP'].value_counts()
-    # st.bar_chart(u1)

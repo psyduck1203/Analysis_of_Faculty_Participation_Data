@@ -57,6 +57,3 @@ def app():
        
     st.bar_chart(df2)
     
-#    st.bar_chart(df1)
-
-#    st.bar_chart(df2)
