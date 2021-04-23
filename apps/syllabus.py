@@ -12,6 +12,8 @@ def app():
     df = pd.read_csv(data)
 
     u1 = df['NameofUniversity'].value_counts()
+    st.write('**Graph of University-Wise Count of Teacher attending Syllabus**')
+     
     st.bar_chart(u1)
     
 
@@ -42,7 +44,7 @@ def app():
         df1=df1.append(pd.DataFrame(t1))
         t2=pd.DataFrame([t2],columns=['Count'],index=['EVEN sem '+str(i)])
         df1=df1.append(pd.DataFrame(t2))
-
+    st.write('**Graph of Semester-Wise Count of Teacher attending Syllabus**')
     st.bar_chart(df1) 
 
     df2=pd.DataFrame(data=None,columns=['Count'])
@@ -54,9 +56,9 @@ def app():
         t1=c1.shape[0]
         t1=pd.DataFrame([t1],columns=['Count'],index=[str(i)+'-'+str(i+1)])
         df2=df2.append(pd.DataFrame(t1))
-
+    st.write('**Graph of Year-Wise Count of Teacher attending Syllabus**')
     st.bar_chart(df2)
     
-    st.bar_chart(df1)
+#    st.bar_chart(df1)
 
-    st.bar_chart(df2)
+#    st.bar_chart(df2)
