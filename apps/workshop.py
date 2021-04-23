@@ -1,11 +1,14 @@
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as pl
+import os
+cwd = os.path.abspath('') 
+files = os.listdir(cwd)
 
 def app():
     st.title('Workshop')
 
-    st.write('This page will show the graphs and tables based on the Faculty Particpation in Workshops, STTP, FDP, etc')
+    st.write('**This page will show the graphs and tables based on the Faculty Particpation in Workshops, STTP, FDP, etc**')
 
     data = st.file_uploader("Upload your relevant excel file")
     df = pd.ExcelFile(data)
@@ -16,42 +19,94 @@ def app():
         
         st.title(i)
 
-        st.write('**Table based on Criteria**')
+        st.write('**Table of Semester-Wise Count of Teacher attending Workshop based on Criteria**')
         st.table(df1.groupby('Criteria :=> Workshop / STTP / Training Program / FDP').size().sort_values(ascending=True).reset_index(name='No. of Faculties participated in Workshop'))
         
-        st.write('**Bar Graph based on Criteria**')
+        st.write('**Bar Graph of Semester-Wise Count of Teacher attending Workshop based on Criteria**')
         u1 = df1['Criteria :=> Workshop / STTP / Training Program / FDP'].value_counts()
         st.bar_chart(u1)
 
-        st.write('**Table based on Organizer**')
+        st.write('**Table of Semester-Wise Count of Teacher attending Workshop based on Organizer**')
         st.table(df1.groupby('Organizer').size().sort_values(ascending=True).reset_index(name='No. of Faculties participated in Workshop'))
 
-        st.write('**Bar Graph based on Organizer**')
+        st.write('**Bar Graph of Semester-Wise Count of Teacher attending Workshop based on Organizer**')
         u1 = df1['Organizer'].value_counts()
         st.bar_chart(u1)
 
-        st.write('**Table based on Level**')
+        st.write('**Table of Semester-Wise Count of Teacher attending Workshop based on Level**')
         st.table(df1.groupby('Local / State / National / International').size().sort_values(ascending=True).reset_index(name='No. of Faculties participated in Workshop'))
 
-        st.write('**Bar Graph based on Level**')
+        st.write('**Bar Graph of Semester-Wise Count of Teacher attending Workshop based on Level**')
         u1 = df1['Local / State / National / International'].value_counts()
         st.bar_chart(u1)
 
-        st.write('**Table based on Source of Funding**')
+        st.write('**Table of Semester-Wise Count of Teacher attending Workshop based on Source of Funding**')
         st.table(df1.groupby('Source of Funding').size().sort_values(ascending=True).reset_index(name='No. of Faculties participated in Workshop'))
 
-        st.write('**Bar Graph based on Source of Funding**')
+        st.write('**Bar Graph of Semester-Wise Count of Teacher attending Workshop based on Source of Funding**')
         u1 = df1['Source of Funding'].value_counts()
         st.bar_chart(u1)
+
+    for i in range(0,6,2):
+        df1 = pd.read_excel(df, sheet_name=i)
+
+        st.write('**Bar Graph of Year-Wise Count of Teacher attending Workshop based on Criteria**')
+        u1 = df1['Criteria :=> Workshop / STTP / Training Program / FDP'].value_counts()
+        st.bar_chart(u1)
+
+        st.write('**Bar Graph of Year-Wise Count of Teacher attending Workshop based on Organizer**')
+        u1 = df1['Organizer'].value_counts()
+        st.bar_chart(u1)
+
+        st.write('**Bar Graph of Year-Wise Count of Teacher attending Workshop based on Level**')
+        u1 = df1['Local / State / National / International'].value_counts()
+        st.bar_chart(u1)
+
+        st.write('**Bar Graph of Year-Wise Count of Teacher attending Workshop based on Source of Funding**')
+        u1 = df1['Source of Funding'].value_counts()
+        st.bar_chart(u1)
+
+    df1 = pd.read_excel(df, sheet_name=1)
     
-    # f = []
-    # numberOfSheets = len(df.sheet_names)
+    df2 = pd.concat(pd.read_excel(df, sheet_name=None, skiprows=1))
+    
+    st.write('**Bar Graph of All 3 Years Count of Teacher attending Workshop based on Criteria**')
+    u1 = df1['Criteria :=> Workshop / STTP / Training Program / FDP'].value_counts()
+    st.bar_chart(u1)
 
-    # for i in range(0,numberOfSheets):    
-    #     data = pd.ExcelFile(df, sheetname = i , header=None) 
-    #     f.append(data)
+    st.write('**Bar Graph of All 3 Years Count of Teacher attending Workshop based on Organizer**')
+    u1 = df1['Organizer'].value_counts()
+    st.bar_chart(u1)
 
-    # f = pd.concat(f)
+    st.write('**Bar Graph of All 3 Years Count of Teacher attending Workshop based on Level**')
+    u1 = df1['Local / State / National / International'].value_counts()
+    st.bar_chart(u1)
 
-    # u1 = f['Criteria :=> Workshop / STTP / Training Program / FDP'].value_counts()
+    st.write('**Bar Graph of All 3 Years Count of Teacher attending Workshop based on Source of Funding**')
+    u1 = df1['Source of Funding'].value_counts()
+    st.bar_chart(u1)
+
+
+
+
+
+
+
+
+
+
+    # df_total = pd.DataFrame()
+    # for file in files:                         # loop through Excel files
+    #     if file.endswith('.xlsx'):
+    #         excel_file = pd.ExcelFile(file)
+    #         sheets = excel_file.sheet_names
+    #         for sheet in sheets:               # loop through sheets inside an Excel file
+    #             f = excel_file.parse(sheet_name = sheet)
+    #             df_total = df_total.append(f)
+    # df_total.to_excel('combined_file.xlsx')
+
+
+
+
+    # u1 = final['Criteria :=> Workshop / STTP / Training Program / FDP'].value_counts()
     # st.bar_chart(u1)
