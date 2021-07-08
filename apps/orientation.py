@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
 import datetime
 
 def app():
@@ -21,8 +20,7 @@ def app():
         with col2:
 	        temp2 = st.button("Year wise")
         with col3:
-            temp3 = st.button("Venue")
-			
+            temp3 = st.button("Venue")	
         with col4:
             temp7 = st.button("University wise")
 	
@@ -73,9 +71,7 @@ def app():
                 t1=pd.DataFrame([t1],columns=['Count'],index=[str(i)+'-'+str(i+1)])
                 df2=df2.append(pd.DataFrame(t1))
         
-            
-            st.bar_chart(df2)
-            
+            st.bar_chart(df2)    
             
     if page == "Department":
         if temp3 == True:
@@ -83,23 +79,13 @@ def app():
             
             st.write('**Graph based on Venue Wise Count for whole Department**')
 
-
-            #u2 = (data['NameofFaculty']=='Dr. Choudhari Sangeeta S.')  
-            #test5=data.loc[u2]
-
             totalr=len(df[df['Venue'] == 'RAIT'])
-            #totalo=len(data[data['Venue'] == 'Online'])
             totalr=totalr
 
             totall=len(df['Venue'])
-            totall
 
             totald=totall-totalr
-            totald
-
-
-            #c1=
-            #t1=c1.shape[0]
+ 
             t1=pd.DataFrame([totalr],columns=['Count'],index=['RAIT'])
             df2=df2.append(pd.DataFrame(t1))
 
@@ -113,20 +99,12 @@ def app():
             st.write('**Graph based on University Wise Count for whole Department**')
             df2=pd.DataFrame(data=None,columns=['Count'])
 
-
-
-            #u2 = (data['NameofFaculty']=='Dr. Choudhari Sangeeta S.')  
-            #test5=data.loc[u2]
-
             totalm=len(df[df['NameofUniversity'] == 'University of Mumbai'])
             totalr=len(df[df['NameofUniversity'] == 'RAIT'])
             totall=len(df['NameofUniversity'])
 
             totald=totall-totalm-totalr
             
-
-            #c1=
-            #t1=c1.shape[0]
             t1=pd.DataFrame([totalm],columns=['Count'],index=['Mumbai University'])
             df2=df2.append(pd.DataFrame(t1))
 
@@ -151,19 +129,14 @@ def app():
         
         df['Date'] = df['Date'].astype('datetime64[ns]')
 
-
         df_1 = df['Date'].dt.year
-        
-                
+         
         col = []
         for i in df_1:
             col.append(i)
         col=list(set(col))
-        col
+
         for i in col:
-          # n=str(col_one_list[0])
-          
-         # mask = (data['Date'] > str(i)+'0615') & (data['Date'] <= str(i+1)+'0615') & (data['Name of Faculty']==[(col_one_list[5])]) 
           mask = (df['Date'] > str(i)+'0615') & (df['Date'] <= str(i+1)+'0615')  & (df['NameOfFaculty']==str(col_one_list[j])) 
           
           test5=df.loc[mask]
@@ -172,10 +145,6 @@ def app():
           t1=pd.DataFrame([t1],columns=['Count'],index=[str(i)+'-'+str(i+1)])
           df2=df2.append(pd.DataFrame(t1))
         st.bar_chart(df2)
-        
-        
-        
-        
         
         st.write('**Graph based on Sem-Wise Count for Faculty **')
         df4=pd.DataFrame(data=None,columns=['Count'])
@@ -194,19 +163,12 @@ def app():
             t2=pd.DataFrame([t2],columns=['Count'],index=['EVEN sem '+str(i)])
             df4=df4.append(pd.DataFrame(t2))
         st.bar_chart(df4)
-        
-        
-        
+       
         st.write('**Graph based on University-Wise Count for Faculty **')
-        
         
         data1=df.loc[df['NameOfFaculty'] == str(col_one_list[j])]
 
         df5=pd.DataFrame(data=None,columns=['Count'])
-
-
-        #u2 = (data['NameofFaculty']=='Dr. Choudhari Sangeeta S.')  
-        #test5=data.loc[u2]
 
         totalm=len(data1[data1['NameofUniversity'] == 'University of Mumbai'])
         totalr=len(data1[data1['NameofUniversity'] == 'DYPU'])
@@ -214,9 +176,6 @@ def app():
 
         totald=totall-totalm-totalr
         
-
-        #c1=
-        #t1=c1.shape[0]
         t1=pd.DataFrame([totalm],columns=['Count'],index=['Mumbai University'])
         df5=df5.append(pd.DataFrame(t1))
 
@@ -227,7 +186,6 @@ def app():
         df5=df5.append(pd.DataFrame(t1))
 
         st.bar_chart(df5)
-        
         
         st.write('**Graph based on Venue-Wise Count for Faculty **')
         
@@ -240,15 +198,9 @@ def app():
         totalr=totalr+totalo
 
         totall=len(data1['Venue'])
-        totall
 
         totald=totall-totalr
-        totald
 
-
-
-        #c1=
-        #t1=c1.shape[0]
         t1=pd.DataFrame([totalr],columns=['Count'],index=['RAIT'])
         df6=df6.append(pd.DataFrame(t1))
 
@@ -256,5 +208,3 @@ def app():
         df6=df6.append(pd.DataFrame(t1))
 
         st.bar_chart(df6)
-        
-
