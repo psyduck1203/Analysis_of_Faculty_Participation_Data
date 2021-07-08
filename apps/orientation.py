@@ -28,7 +28,6 @@ def app():
         if temp1 == True:
             df['Date'] = df['Date'].astype('datetime64[ns]')
             
-            st.write('**Graph based on Sem-Wise Count for whole Department **')
             df_1 = df['Date'].dt.year
             col = []
             for i in df_1:
@@ -50,12 +49,17 @@ def app():
                 t2=pd.DataFrame([t2],columns=['Count'],index=['EVEN sem '+str(i)])
                 df1=df1.append(pd.DataFrame(t2))
             
+            st.write('**Table based on Sem-Wise Count for whole Department**')
+                
+            st.table(df1)
+            st.write('**Graph based on Sem-Wise Count for whole Department **')
+            
             st.bar_chart(df1) 
+        
 
     if page == "Department":
         if temp2 == True:
             
-            st.write('**Graph based on Year-Wise Count for whole Department **')
             df['Date'] = df['Date'].astype('datetime64[ns]')
             df_1 = df['Date'].dt.year
             col = []
@@ -71,14 +75,18 @@ def app():
                 t1=pd.DataFrame([t1],columns=['Count'],index=[str(i)+'-'+str(i+1)])
                 df2=df2.append(pd.DataFrame(t1))
         
-            st.bar_chart(df2)    
+            st.write('**Table based on Year-Wise Count for whole Department**')
+                
+            st.table(df2)
+            st.write('**Graph based on Year-Wise Count for whole Department **')
+            
+            st.bar_chart(df2)
             
     if page == "Department":
         if temp3 == True:
             df2=pd.DataFrame(data=None,columns=['Count'])
             
-            st.write('**Graph based on Venue Wise Count for whole Department**')
-
+            
             totalr=len(df[df['Venue'] == 'RAIT'])
             totalr=totalr
 
@@ -91,12 +99,17 @@ def app():
 
             t1=pd.DataFrame([totald],columns=['Count'],index=['Other Universities'])
             df2=df2.append(pd.DataFrame(t1))
-            st.bar_chart(df2)   
+             
+            st.write('**Table based on Venue-Wise Count for whole Department**')
+                
+            st.table(df2)
+            st.write('**Graph based on Venue-Wise Count for whole Department **')
+            
+            st.bar_chart(df2)
     
     if page == "Department":
         if temp7 == True:
             
-            st.write('**Graph based on University Wise Count for whole Department**')
             df2=pd.DataFrame(data=None,columns=['Count'])
 
             totalm=len(df[df['NameofUniversity'] == 'University of Mumbai'])
@@ -113,10 +126,18 @@ def app():
 
             t1=pd.DataFrame([totald],columns=['Count'],index=['Other Universities'])
             df2=df2.append(pd.DataFrame(t1))
-            st.bar_chart(df2) 
+             
+            st.write('**Table based on University-Wise Count for whole Department**')
+                
+            st.table(df2)
+            st.write('**Graph based on University-Wise Count for whole Department **')
+            
+            st.bar_chart(df2)
+            
+            
+            
     if page == "Faculty":
-        st.write('**Graph based on Year-Wise Count for Faculty **')
-
+        
         col_one_list = df['NameOfFaculty'].tolist()
 
         col_one_list=list(set(col_one_list))
@@ -144,9 +165,17 @@ def app():
           t1=c1.shape[0]
           t1=pd.DataFrame([t1],columns=['Count'],index=[str(i)+'-'+str(i+1)])
           df2=df2.append(pd.DataFrame(t1))
+        st.write('**Table based on Year-Wise Count for Faculty**')
+            
+        st.table(df2)
+        st.write('**Graph based on Year-Wise Count for Faculty **')
+        
         st.bar_chart(df2)
         
-        st.write('**Graph based on Sem-Wise Count for Faculty **')
+        
+        
+        
+        
         df4=pd.DataFrame(data=None,columns=['Count'])
         
         for i in col:
@@ -162,9 +191,14 @@ def app():
             df4=df4.append(pd.DataFrame(t1))
             t2=pd.DataFrame([t2],columns=['Count'],index=['EVEN sem '+str(i)])
             df4=df4.append(pd.DataFrame(t2))
+        st.write('**Table based on Sem-Wise Count for Faculty**')
+                
+        st.table(df4)
+        st.write('**Graph based on Sem-Wise Count for Faculty **')
+            
         st.bar_chart(df4)
-       
-        st.write('**Graph based on University-Wise Count for Faculty **')
+        
+        
         
         data1=df.loc[df['NameOfFaculty'] == str(col_one_list[j])]
 
@@ -185,9 +219,16 @@ def app():
         t1=pd.DataFrame([totald],columns=['Count'],index=['Other Universities'])
         df5=df5.append(pd.DataFrame(t1))
 
+        
+        st.write('**Table based on University-Wise Count for Faculty**')
+                
+        st.table(df5)
+        st.write('**Graph based on University-Wise Count for Faculty **')
+            
         st.bar_chart(df5)
         
-        st.write('**Graph based on Venue-Wise Count for Faculty **')
+        
+        
         
         df6=pd.DataFrame(data=None,columns=['Count'])
 
@@ -207,4 +248,12 @@ def app():
         t1=pd.DataFrame([totald],columns=['Count'],index=['Other Universities'])
         df6=df6.append(pd.DataFrame(t1))
 
+        
+        st.write('**Table based on Venue-Wise Count for Faculty**')
+                
+        st.table(df6)
+        st.write('**Graph based on Venue-Wise Count for Faculty **')
+            
         st.bar_chart(df6)
+        
+        
